@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuru-lite"
+version = "0.1.0"
+description = "NURU Lite — assistant IA personnel léger, offline-first"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+rag = ["numpy>=1.26", "pymupdf>=1.24"]
+
+[project.scripts]
+nuru = "nuru.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["nuru*"]
+
+[tool.setuptools.package-data]
+nuru = ["ui/*.html", "ui/*.js", "ui/*.css"]

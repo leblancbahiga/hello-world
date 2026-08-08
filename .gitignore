@@ -121,6 +121,12 @@
 **/tmp/
 **/temp/
 
+# NURU Lite local data
+.nuru/
+*.db
+*.db-wal
+*.db-shm
+
 # Dart
 **/.dart_tool/
 **/*.dart_tool

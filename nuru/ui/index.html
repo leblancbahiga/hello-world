@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NURU Lite</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="brand"><span class="logo">◆</span> NURU <em>Lite</em></div>
+      <nav id="nav">
+        <button class="nav-btn active" data-view="chat">Chat</button>
+        <button class="nav-btn" data-view="docs">Documents</button>
+        <button class="nav-btn" data-view="settings">Paramètres</button>
+      </nav>
+      <div id="conv-list" class="scroll"></div>
+      <div class="sidebar-foot">
+        <label class="model-label">Modèle</label>
+        <select id="model-select"></select>
+        <div id="status" class="status">déconnecté</div>
+      </div>
+    </aside>
+
+    <main id="chat" class="view active">
+      <header id="chat-header">
+        <div class="chat-title-wrap">
+          <span id="conv-title">—</span>
+          <span id="meta"></span>
+        </div>
+        <button id="new-chat" title="Nouvelle conversation (Ctrl+N)">+ Nouveau chat</button>
+      </header>
+      <section id="messages" class="scroll"></section>
+      <footer id="composer">
+        <label class="rag-toggle" title="Chercher dans vos documents indexés">
+          <input type="checkbox" id="rag-check"> Documents
+        </label>
+        <textarea id="input" rows="1" placeholder="Écrire à NURU… (Entrée pour envoyer, Maj+Entrée pour une ligne)" autofocus></textarea>
+        <button id="send" title="Envoyer (Entrée)">Envoyer</button>
+        <button id="stop" title="Arrêter la génération" hidden>Arrêter</button>
+      </footer>
+    </main>
+
+    <main id="docs" class="view">
+      <header class="view-header">
+        <h1>Documents</h1>
+        <button id="import-btn">Importer des fichiers…</button>
+        <input type="file" id="file-input" multiple hidden>
+      </header>
+      <div id="doc-list" class="scroll"></div>
+    </main>
+
+    <main id="settings" class="view">
+      <header class="view-header"><h1>Paramètres</h1></header>
+      <div id="settings-form" class="settings-form">
+        <label>Prompt système
+          <textarea id="set-system" rows="4"></textarea>
+        </label>
+        <label>Fournisseur par défaut
+          <input id="set-provider" type="text" placeholder="ollama">
+        </label>
+        <label>Modèle par défaut
+          <input id="set-model" type="text" placeholder="llama3.2">
+        </label>
+        <label>Température
+          <input id="set-temp" type="number" step="0.1" min="0" max="2">
+        </label>
+        <label>Embedder RAG
+          <select id="set-embedder">
+            <option value="hash">hash — hors-ligne (lexical)</option>
+            <option value="ollama">ollama — sémantique (via Ollama)</option>
+          </select>
+        </label>
+        <label>Modèle d'embedding (Ollama)
+          <input id="set-embedder-model" type="text" placeholder="nomic-embed-text">
+        </label>
+        <label>Top-k de recherche
+          <input id="set-topk" type="number" min="1" max="20">
+        </label>
+        <button id="save-settings">Enregistrer</button>
+        <div id="settings-msg"></div>
+      </div>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
